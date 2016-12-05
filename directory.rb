@@ -1,3 +1,4 @@
+# full list of students added
 puts "The students of Villains Academy"
 puts "-----------------"
 puts "Dr. Hannibal Lecter"
@@ -11,3 +12,7 @@ puts "Freddy Krueger"
 puts "The Joker"
 puts "Joffrey Baratheon"
 puts "Norman Bates"
+# end with the count of students. Note 'print' doesn't drop onto new line
+print "Overall, we have "
+print 11
+print " great students  "
