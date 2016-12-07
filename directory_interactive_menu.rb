@@ -1,19 +1,21 @@
+@students = [] # an empty array accessible to all methods
+
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   # create an empty array
-  students = []
+  @students
   name = gets.chomp
   # while the name is not empty, repeat:
   while !name.empty? do
     # add the student hash to the array
-    students << {name: name, cohort: :november}
-    puts "Now we have #{students.count} students"
+    @students << {name: name, cohort: :november}
+    puts "Now we have #{@students.count} students"
     # get another name from the user
     name = gets.chomp
   end
   # return the array of students
-  students
+  # @students
 end
 
 def print_header
@@ -21,8 +23,8 @@ def print_header
   puts "-----------------"
 end
 
-def print(students)
-  students.each do |student|
+def print
+  @students.each do |student|
     puts "#{student[:name]} (#{student[:cohort]} cohort)".center(60)
   end
 end
@@ -31,18 +33,19 @@ def print_footer(names)
   puts "Overall, we have #{names.count} great students.".center(60)
 end
 
-def some_students(students)
-  if students.count >= 1
+def show_students
+  if @students.count >= 1
     print_header
-    print(students)
-    print_footer(students)
+    print
+    print_footer(@students)
   else
     puts "There are no students enrolled."
   end
-end  
+end
+
 
 def interactive_menu
-  students = []
+  @students
   loop do
   # 1. print the menu and ask the user what to do
   puts "1. Input the students"
@@ -57,9 +60,7 @@ def interactive_menu
         students = input_students
       when "2"
         # show the students
-        print_header
-        print(students)
-        print_footer(students)
+        some_students
       when "9"
         exit # this will cause the program to terminate
       else
@@ -70,4 +71,4 @@ end
 # nothing happens until we call the methods
 
 interactive_menu
-some_students(students)
+show_students
