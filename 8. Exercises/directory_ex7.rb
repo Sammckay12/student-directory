@@ -4,16 +4,23 @@ def input_students
   # create an empty array
   students = []
   name = gets.chomp
+  puts "What is the start month of your cohort? (3 letter Month abbrv.)"
+  cohort = gets.chomp
   # while the name is not empty, repeat:
   while !name.empty? do
     # add the student hash to the array
-    students << {name: name, cohort: :november}
+    students << {name: name, cohort: cohort.to_sym}
     puts "Now we have #{students.count} students"
     # get another name from the user
     name = gets.chomp
+    cohort = gets.chomp
+# set default value if left blank.
+    if cohort == ""
+      cohort = 'Nov'.to_sym
+    end
   end
   # return the array of students
-  students
+  p students
 end
 
 def print_header
@@ -30,14 +37,8 @@ end
 def print_footer(names)
   puts "Overall, we have #{names.count} great students.".center(60)
 end
-
-def some_students
-  if students.count >= 1
-    print_header
-    print(students)
-    print_footer(students)
-  end
-end
 # nothing happens until we call the methods
 students = input_students
-some_students
+print_header
+print(students)
+print_footer(students)

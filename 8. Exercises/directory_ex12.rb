@@ -31,13 +31,15 @@ def print_footer(names)
   puts "Overall, we have #{names.count} great students.".center(60)
 end
 
-def some_students
+def some_students(students)
   if students.count >= 1
     print_header
     print(students)
     print_footer(students)
+  else
+    puts "There are no students enrolled."
   end
 end
 # nothing happens until we call the methods
 students = input_students
-some_students
+some_students(students)
