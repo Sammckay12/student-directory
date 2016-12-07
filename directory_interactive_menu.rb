@@ -23,7 +23,7 @@ def print_header
   puts "-----------------"
 end
 
-def print
+def print_students_list
   @students.each do |student|
     puts "#{student[:name]} (#{student[:cohort]} cohort)".center(60)
   end
@@ -36,39 +36,39 @@ end
 def show_students
   if @students.count >= 1
     print_header
-    print
+    print_students_list
     print_footer(@students)
   else
     puts "There are no students enrolled."
   end
 end
 
-
-def interactive_menu
-  @students
-  loop do
-  # 1. print the menu and ask the user what to do
+def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
   puts "9. Exit"
-  # 2. read the input and save it into a variable
-  selection = gets.chomp
-  # 3. do what the user has asked
-    case selection
-      when "1"
-        # input the students
-        students = input_students
-      when "2"
-        # show the students
-        some_students
-      when "9"
-        exit # this will cause the program to terminate
-      else
-        puts "I don't know what you meant, try again."
-    end
+end
+
+def process(selection)
+#    selection = gets.chomp
+  case selection
+    when "1"
+    input_students
+    when "2"
+      show_students
+    when "9"
+      exit # this will cause the program to terminate
+    else
+      puts "I don't know what you meant, try again."
+  end
+end
+
+def interactive_menu
+  loop do
+    print_menu
+    process(gets.chomp)
   end
 end
 # nothing happens until we call the methods
 
 interactive_menu
-show_students
